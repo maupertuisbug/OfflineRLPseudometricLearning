@@ -1,5 +1,5 @@
 import torch 
-
+torch.set_default_dtype(torch.float64)
 
 
 class Phi(torch.nn.Module):
@@ -31,14 +31,14 @@ class Psi(torch.nn.Module):
         super().__init__()
 
         self.input_features = state_n
-        self.output_featuures = repr
+        self.output_features = repr
         self.net = torch.nn.Sequential(
                     torch.nn.Linear(self.input_features, 1024),
                     torch.nn.ReLU(),
                     torch.nn.Linear(1024, self.output_features)
         )
 
-        self.optimizer = torch.optim.Adam(self.net.paramerers(), lr = 0.001)
+        self.optimizer = torch.optim.Adam(self.net.parameters(), lr = 0.001)
 
     def forward(self, x):
 
