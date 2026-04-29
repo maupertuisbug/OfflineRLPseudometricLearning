@@ -35,9 +35,9 @@ for i in range(0, 20000):
     
     loss_psi = bl.train_psi(states_batch_one, states_batch_two)
     loss_phi = bl.train_phi(data_one, data_two)
-    if i%200:
+    if i%200==0:
         loss_psis.append(loss_psi.detach().cpu().numpy())
         loss_phis.append(loss_phi.detach().cpu().numpy())
 
-    if i%1000:
-        plot(loss_psis, loss_phis, "Loss Phi", "Loss Psi", "Step", "Loss", "Bonus Learning", True)
+    if i%1000==0:
+        plot(loss_psis, loss_phis, "Loss Phi", "Loss Psi", "Step", "Loss", "BonusLearning", True)
