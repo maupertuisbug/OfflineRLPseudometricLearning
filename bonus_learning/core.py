@@ -82,6 +82,24 @@ class BonusLearner:
         return total_loss
 
 
+    def compute_bonus(self, states_one, actions_one, states_two, actions_two):
+
+        phi_input_one = torch.cat([states_one, actions_one], dim=1)
+
+        phi_output_one = self.phi(phi_input_one) # batchsize, 32
+
+        phi_input_two = torch.cat([states_two, actions_two], dim=1)
+
+        phi_output_two = self.phi(phi_output_two)
+
+        similarity = phi_output_one @ phi_output_two.T 
+        similarity = torch.sum(similarity, dim=1)
+
+        return similarity
+
+        
+
+
 
 
 
